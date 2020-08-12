@@ -1,0 +1,144 @@
+﻿Student 068 
+===================================================
+Constants 
+
+
+RAM cost: £15/GiB
+
+Base access time (a) = 200 nanosec = 2.0^-7 sec
+
+HD read/write speed    = 120 MiB/s
+
+SSD read/write speed   = 300 MiB/s
+
+XSSSD read/write speed = 420 MiB/s
+
+===================================================
+
+Parameters  
+
+Budget for RAM + Disk: £300
+
+p_min = 2.2E-6, 
+r = 4.6E-5, 
+S_min = 1.0E-4, 
+d = 0.24
+
+
+HD cost    = £35
+SSD cost   = £110
+XSSSD cost = £260
+
+===================================================
+
+
+Question 1) Combinations List
+
+Budget <= 300
+
+A + B <= 300
+A = HD, SSD, XSSSD
+B = 4GiB, 8GiB, 16Gib
+
+Answer
+
+HD + 16GiB = £275
+HD + 8GiB = £155
+HD + 4GiB = £95
+
+SSD + 8GiB = £230
+SSD + 4GiB = £170
+
+===================================================
+
+Question 2) EAT Values
+
+Parameters
+
+p_min = 2.2^-6 = 2.2e-6,
+r = 4.6^-5 = 4.6e-5
+S_min = 1.0^-4 = 1.0e -4, 
+EAT = (1-p) a + p (a + S) = a + pS
+
+Below is the Modified version of parameters above as they were not in the same units.
+
+Same Units
+P min = 0.000000022
+r = 0.000046
+Smin = 0.001
+d = 0.24
+
+
+  
+Formulas
+p = pmin + r/R
+S = Smin + d/D
+
+p = 0.000000022 + (0.000046/16) = 3.095e-6 MiB/sec
+p = 0.000000022 + (0.000046/8) = 5.97e-6 MiB/sec
+p = 0.000000022 + (0.000046/4) = 1.172e-5 MiB/sec
+
+S = 0.001 + 0.24/120 = 3e-3 sec
+S = 0.001 + 0.24/300 = 1.8e-3 sec
+
+
+
+Answer for Question 2)
+
+
+HD and 16giB
+  
+EAT = 2.0e-7 + (3.095E-6 x 3E-3) = 2.09E-7
+     
+HD and 8giB
+  
+EAT = 2.0e-7 + (5.97E-6 x 3E-3) = 2.18E-7
+   
+HD and 4giB
+   
+EAT = 2.0e-7 + (1.172E-5 x 3E-3) = 2.35E-7
+ 
+SSD and 8giB
+
+   
+EAT = 2.0e-7 + (5.97E-6 x 1.8E-3) = 2.10E-7
+
+SSD and 4giB
+
+EAT = 2.0e-7 + (1.172E-5 x 1.8E-3) = 2.02E-7
+
+   
+===================================================
+
+Question 3) Best and Worst Predicted Memory Performance
+
+Formula = EAT – base-access-time / base-access-time
+
+Answer for Question 3)
+
+Predicted Memory Performance for HD and 16giB = 0.045 = 4.5%
+Predicted Memory Performance for HD and 8giB = 0.09 = 9%
+Predicted Memory Performance for HD and 4giB = 0.175 = 17.5%
+Predicted Memory Performance for SSD and 8giB = 0.05 = 5%
+Predicted Memory Performance for SSD and 4giB = 0.01 = 1%
+
+
+
+
+Best = Predicted Memory Performance for HD and 4giB = 0.175 = 17.5%
+Worst = Predicted Memory Performance for SSD and 4giB = 0.01 = 1%
+
+===================================================                
+
+Question 4) 
+
+Answer for Question 4)
+
+Page Fault Handling. A page fault occurs when a program attempts to access data or code that is in its address space, 
+but is not currently located in the system RAM. Operating system finds that a page fault has occurred and tries to 
+find out which virtual page is needed. On most systems a page does not get mapped to physical memory until it is actually accessed. 
+That is why you get many page faults when a program starts up. These page faults occur even when memory is available. It is a 
+sensible prediction as there is no way you can have no page faults regardless of how much RAM there is since.
+
+===================================================              
+
